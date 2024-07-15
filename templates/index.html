@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Currency Prices</title>
+  </head>
+  <body>
+    <h1>Currency Prices</h1>
+    <div id="prices"></div>
+    <script>
+      async function fetchPrices() {
+        const response = await fetch('/prices');
+        const prices = await response.json();
+        document.getElementById('prices').innerHTML = `
+          <p>USD: ${prices.USD}</p>
+          <p>UAH: ${prices.UAH}</p>
+          <p>GBP: ${prices.GBP}</p>
+        `;
+      }
+      fetchPrices();
+      setInterval(fetchPrices, 10000); // Update prices every 10 seconds
+    </script>
+  </body>
+</html>
+
